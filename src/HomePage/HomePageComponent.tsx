@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Redirect, withRouter, Switch, Link, Route } from 'react-router-dom';
 import { Button } from "@material-ui/core";
+import { useSelector } from 'react-redux'
 import { ProfilePageComponent } from "../ProfilePage";
 import { OrderComponent } from "../Order";
 
@@ -18,6 +19,8 @@ const routes = [
 const HomePageComponent = (props:any): ReactElement => {
     const userInfo = localStorage.getItem("userInfo");
     const { history } = props;
+    // const loginSelector = useSelector((state: any) => state.login)
+    // console.log('token: ', loginSelector)
     if (!userInfo) {
         return <Redirect to="/login" />
       }

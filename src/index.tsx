@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
+import configureStore from './store/configureStore'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const initialState = window.INITIAL_REDUX_STATE
+const store = configureStore(initialState)
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <App store={store} />
   </BrowserRouter>,
   document.getElementById('root')
 );

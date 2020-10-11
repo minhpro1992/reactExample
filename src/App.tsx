@@ -4,16 +4,19 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { Provider } from 'react-redux'
 import { HomePageComponent } from "./HomePage";
 import { LoginComponent } from "./Login";
 
-function App() {
+function App({ store }: any) {
   return (
     <div className="App">
-      <Switch>
-        <Route path="/login" component={LoginComponent}></Route>
-        <Route path="/" component={HomePageComponent}></Route>
-      </Switch>
+      <Provider store={store}>
+        <Switch>
+          <Route path="/login" component={LoginComponent}></Route>
+          <Route path="/" component={HomePageComponent}></Route>
+        </Switch>
+      </Provider>
     </div>
   );
 }
