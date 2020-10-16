@@ -1,14 +1,20 @@
 import { combineReducers } from 'redux'
-import { fork } from 'redux-saga/effects'
-
+import { all, fork } from 'redux-saga/effects'
 import { loginReducer } from './login/reducer'
 import loginSaga from './login/sagas'
+import { postReducer } from './post/reducer'
+import postSaga from './post/sagas'
+
 
 export const createRootReducer = () => 
     combineReducers({
-        login: loginReducer
+        login: loginReducer,
+        post: postReducer,
     })
 
 export function* rootsaga() {
-    yield fork(loginSaga)
+    yield all ([
+        fork(loginSaga),
+        fork(postSaga)
+    ])
 }

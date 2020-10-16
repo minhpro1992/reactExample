@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react';
-import { Redirect, withRouter, Switch, Link, Route } from 'react-router-dom';
 import { Button } from "@material-ui/core";
-import { useSelector } from 'react-redux'
-import { ProfilePageComponent } from "../ProfilePage";
+import React, { ReactElement } from 'react';
+import { connect, useSelector } from 'react-redux';
+import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { OrderComponent } from "../Order";
+import { ProfilePageComponent } from "../ProfilePage";
+import { TodoComponent } from '../Todo';
 
 const routes = [
     {
@@ -14,12 +15,16 @@ const routes = [
       path: "/profile",
       component: <ProfilePageComponent />,
     },
+    {
+      path: "/todo",
+      component: <TodoComponent />,
+    }
   ];
 
 const HomePageComponent = (props:any): ReactElement => {
     const userInfo = localStorage.getItem("userInfo");
-    const { history } = props;
-    // const loginSelector = useSelector((state: any) => state.login)
+    const { history, token } = props;
+    const loginSelector = useSelector((state: any) => state.login)
     // console.log('token: ', loginSelector)
     if (!userInfo) {
         return <Redirect to="/login" />
@@ -46,6 +51,9 @@ const HomePageComponent = (props:any): ReactElement => {
               </li>
               <li>
                 <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/todo">Todo</Link>
               </li>
               <li style={{ position: "absolute", bottom: 40 }}>
                 <Button
@@ -84,4 +92,10 @@ const HomePageComponent = (props:any): ReactElement => {
       );
 }
 
-export default withRouter(HomePageComponent)
+const mapStateToProps = (state: any, ownProps: any) => {
+  return {
+    login: state.login
+  }
+}
+
+export default connect(mapStateToProps, null)(withRouter(HomePageComponent))
