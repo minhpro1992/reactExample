@@ -9,3 +9,10 @@ export const getPostSuccess = (data : any) =>
 
 export const getPostFail = (error : any) =>
     action(postTypes.GET_POST_FAIL, error)
+
+export const deletePostRequest = (postId: number) =>
+    action(postTypes.DELETE_POST_REQUEST, postId)
+export const deletePostSuccess = (postId: number) =>
+    action(postTypes.DELETE_POST_SUCCESS, postId)
+export const deletePostFail = (error: any) => 
+    action(postTypes.DELETE_POST_REQUEST, error)

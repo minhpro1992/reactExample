@@ -1,4 +1,7 @@
+import _ from 'lodash'
 import {
+    DELETE_POST_FAIL,
+    DELETE_POST_SUCCESS,
     GET_POST_FAIL,
     GET_POST_REQUEST,
     GET_POST_SUCCESS
@@ -23,7 +26,16 @@ export const postReducer = (state = initialPostState, action: any) => {
                 isLoading: false,
                 posts: action?.payload
             }
+        case DELETE_POST_SUCCESS:
+            const newPosts = _.filter([...state.posts], (post: any) => {
+                return post?.id !== action.payload
+            })
+            return {
+                ...state,
+                posts: newPosts
+            }
         case GET_POST_FAIL:
+        case DELETE_POST_FAIL:
             return {
                 ...state,
                 isLoading: false,

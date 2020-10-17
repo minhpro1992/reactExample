@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPostRequest } from '../store/post/action'
+import { getPostRequest, deletePostRequest } from '../store/post/action'
 
 const TodoComponent = (props: any) => {
     const dispatch = useDispatch()
@@ -12,15 +12,18 @@ const TodoComponent = (props: any) => {
         }))
     }, [dispatch])
     const { posts, isLoading, error } = useSelector((state: any) => state.post)
-    console.log('post: ', posts, isLoading, error)
+    console.log('post: ', posts?.length, isLoading, error)
     return (
         <>
-            <div>Todo List</div>
+            <div>Todo List: {posts?.length}</div>
             {
                 _.map(posts, (post, postIndex) => (
-                    <div className="flex" index={postIndex}>
+                    <div className="flex" key={postIndex}>
                         <div>{post.title}</div>
-                        <button>Delete</button>
+                        <button onClick={(e) => {
+                            e.stopPropagation()
+                            dispatch(deletePostRequest(post?.id))
+                        }}>Delete</button>
                     </div>
                 ))
             }
