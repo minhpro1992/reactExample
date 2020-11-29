@@ -46,7 +46,6 @@ const HomePageComponent = (props: any): ReactElement => {
         >
           <div className="saga-toggle-btn"
           onClick={(e)=> {
-            console.log('debug click close', isToggleSidebar)
             e.stopPropagation()
             setIsToggleSideBar(!isToggleSidebar)
           }}

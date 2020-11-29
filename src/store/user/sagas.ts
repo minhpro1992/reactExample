@@ -7,6 +7,7 @@ const API_SERVER_URL =  'https://jsonplaceholder.typicode.com'
 
 function* handleGetDetailUser({ payload: userId}: AnyAction) {
     try {
+        console.log('response: ', userId)
         const response = yield call(
             callApi,
             'get',

@@ -16,7 +16,7 @@ export const userReducer = (state = initalUserState, action: {[key: string]: str
             return {
                 ...state,
                 isLoading: false,
-                user: action?.data
+                user: action?.payload
             }
         case GET_DETAIL_USER_FAIL:
             return {
