@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 type SideBarProps = {
     isToggleSidebar: boolean
 }
 
-export const SideBarWapperStyled = styled.div<SideBarProps>`
+export const SideBarWrapperStyled = styled.div<SideBarProps>`
     flex: ${props => props?.isToggleSidebar ? 0.3 : 1};
     transition: flex 0.5s ease-out;
     padding: 10px;

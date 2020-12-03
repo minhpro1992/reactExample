@@ -1,12 +1,11 @@
 import { Button } from "@material-ui/core";
-import React, { ReactElement, useMemo, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import React, { ReactElement, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import { createSelector } from 'reselect'
 import { OrderComponent } from "../Order";
 import { ProfilePageComponent } from "../ProfilePage";
 import { TodoComponent } from '../Todo';
-import { SideBarWapperStyled, MainContentWrapperStyled } from './HomePageStyled'
+import { MainContentWrapperStyled, SideBarWrapperStyled } from './HomePageStyled';
 
 const routes = [
   {
@@ -27,6 +26,7 @@ const HomePageComponent = (props: any): ReactElement => {
   const [isToggleSidebar, setIsToggleSideBar] = useState(false)
   const userInfo = localStorage.getItem("userInfo");
   const { history, token } = props;
+  const sideBarData = {isToggleSidebar}
   // const selectLogin = useMemo(
   //   (state: any) => state.login,
   //   {}
@@ -40,7 +40,7 @@ const HomePageComponent = (props: any): ReactElement => {
   }
   return (
     <div style={{ display: "flex" }}>
-      <SideBarWapperStyled isToggleSidebar={isToggleSidebar}>
+      <SideBarWrapperStyled {...sideBarData}>
 
         <div className="saga-menu-wrapper"
         >
@@ -80,8 +80,8 @@ const HomePageComponent = (props: any): ReactElement => {
             </li>
           </ul>
         </div>
-      </SideBarWapperStyled>
-      <MainContentWrapperStyled isToggleSidebar={isToggleSidebar}>
+      </SideBarWrapperStyled>
+      <MainContentWrapperStyled {...sideBarData}>
         <div className="saga-main-content-wrapper"
         >
           <Switch>
