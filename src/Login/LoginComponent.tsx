@@ -5,11 +5,11 @@ import React, {
   MouseEvent,
   useEffect,
 } from "react";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Redirect, withRouter} from "react-router-dom";
-import { loginRequest } from '../store/login/action'
+import { Redirect, withRouter } from "react-router-dom";
+import { loginRequest } from "../store/login/action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginComponent = (props: any): ReactElement => {
-    const { history } = props
+const LoginComponent = (props): ReactElement => {
+  const { history } = props;
   const classes = useStyles();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({
     username: "",
     currentPassword: "",
@@ -63,10 +63,12 @@ const LoginComponent = (props: any): ReactElement => {
         variant="contained"
         color="primary"
         onClick={(e: MouseEvent): void => {
-          dispatch(loginRequest({
-            username: userInfo.username,
-            pass: userInfo.currentPassword
-          }))
+          dispatch(
+            loginRequest({
+              username: userInfo.username,
+              pass: userInfo.currentPassword,
+            })
+          );
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
           history.push("/");
         }}

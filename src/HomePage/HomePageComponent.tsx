@@ -1,11 +1,14 @@
 import { Button } from "@material-ui/core";
-import React, { ReactElement, useState } from 'react';
-import { connect } from 'react-redux';
-import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import React, { ReactElement, useState } from "react";
+import { connect } from "react-redux";
+import { Link, Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { OrderComponent } from "../Order";
 import { ProfilePageComponent } from "../ProfilePage";
-import { TodoComponent } from '../Todo';
-import { MainContentWrapperStyled, SideBarWrapperStyled } from './HomePageStyled';
+import { TodoComponent } from "../Todo";
+import {
+  MainContentWrapperStyled,
+  SideBarWrapperStyled,
+} from "./HomePageStyled";
 
 const routes = [
   {
@@ -19,14 +22,14 @@ const routes = [
   {
     path: "/todo",
     component: <TodoComponent />,
-  }
+  },
 ];
 
-const HomePageComponent = (props: any): ReactElement => {
-  const [isToggleSidebar, setIsToggleSideBar] = useState(false)
+const HomePageComponent = (props): ReactElement => {
+  const [isToggleSidebar, setIsToggleSideBar] = useState(false);
   const userInfo = localStorage.getItem("userInfo");
   const { history, token } = props;
-  const sideBarData = {isToggleSidebar}
+  const sideBarData = { isToggleSidebar };
   // const selectLogin = useMemo(
   //   (state: any) => state.login,
   //   {}
@@ -36,20 +39,21 @@ const HomePageComponent = (props: any): ReactElement => {
   // )
   // console.log('token: ', loginSelector)
   if (!userInfo) {
-    return <Redirect to="/login" />
+    return <Redirect to="/login" />;
   }
   return (
     <div style={{ display: "flex" }}>
       <SideBarWrapperStyled {...sideBarData}>
-
-        <div className="saga-menu-wrapper"
-        >
-          <div className="saga-toggle-btn"
-          onClick={(e)=> {
-            e.stopPropagation()
-            setIsToggleSideBar(!isToggleSidebar)
-          }}
-          >x</div>
+        <div className="saga-menu-wrapper">
+          <div
+            className="saga-toggle-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsToggleSideBar(!isToggleSidebar);
+            }}
+          >
+            x
+          </div>
           <ul
             style={{
               listStyleType: "none",
@@ -65,7 +69,7 @@ const HomePageComponent = (props: any): ReactElement => {
             <li>
               <Link to="/todo">Todo</Link>
             </li>
-            <li style={{ position: "absolute", bottom: 40 }}> 
+            <li style={{ position: "absolute", bottom: 40 }}>
               <Button
                 variant="contained"
                 color="primary"
@@ -76,33 +80,28 @@ const HomePageComponent = (props: any): ReactElement => {
                 }}
               >
                 Logout
-                </Button>
+              </Button>
             </li>
           </ul>
         </div>
       </SideBarWrapperStyled>
       <MainContentWrapperStyled {...sideBarData}>
-        <div className="saga-main-content-wrapper"
-        >
+        <div className="saga-main-content-wrapper">
           <Switch>
             {routes.map((route, index) => (
-              <Route
-                key={index}
-                path={route.path}
-                children={route.component}
-              />
+              <Route key={index} path={route.path} children={route.component} />
             ))}
           </Switch>
         </div>
       </MainContentWrapperStyled>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state: any, ownProps: any) => {
   return {
-    login: state.login
-  }
-}
+    login: state.login,
+  };
+};
 
-export default connect(mapStateToProps, null)(withRouter(HomePageComponent))
+export default connect(mapStateToProps, null)(withRouter(HomePageComponent));
