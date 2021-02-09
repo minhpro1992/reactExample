@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../store/configureStore";
 import { getPostRequest, deletePostRequest } from "../store/post/action";
+import { PostState } from "../store/post/types";
 
 const TodoComponent = (): ReactElement => {
   const dispatch = useDispatch();
@@ -14,8 +15,8 @@ const TodoComponent = (): ReactElement => {
       })
     );
   }, [dispatch]);
-  const { posts, isLoading, error } = useSelector(
-    (state: ApplicationState) => state.post
+  const { posts, isLoading, error } = useSelector<ApplicationState, PostState>(
+    (state) => state.post
   );
   console.log("post: ", posts?.length, isLoading, error);
   return (
