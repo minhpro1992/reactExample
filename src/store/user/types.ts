@@ -4,17 +4,17 @@ export const GET_DETAIL_USER_FAIL = "GET DETAIL USER FAIL";
 
 export type UserType = {
   id: number;
-  name: string;
+  name?: string;
   username: string;
-  email: string;
-  address: { [key: string]: string };
-  phone: string;
-  website: string;
-  company: { [key: string]: string };
+  email?: string;
+  address?: { [key: string]: string };
+  phone?: string;
+  website?: string;
+  company?: { [key: string]: string };
 };
 
 export type UserState = {
   isLoading: boolean;
   error: boolean;
-  user: UserType | {};
+  user: UserType;
 };

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../store/configureStore";
 import { getPostRequest, deletePostRequest } from "../store/post/action";
 
-const TodoComponent = (props): ReactElement => {
+const TodoComponent = (): ReactElement => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(

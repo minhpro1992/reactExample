@@ -8,7 +8,7 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Redirect, withRouter } from "react-router-dom";
+import { Redirect, useHistory, withRouter } from "react-router-dom";
 import { loginRequest } from "../store/login/action";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginComponent = (props): ReactElement => {
-  const { history } = props;
+const LoginComponent = (): ReactElement => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({
@@ -28,6 +27,7 @@ const LoginComponent = (props): ReactElement => {
     currentPassword: "",
   });
   const userInfoData = localStorage.getItem("userInfo");
+  const history = useHistory();
   if (userInfoData) {
     return <Redirect to="/" />;
   }

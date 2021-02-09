@@ -1,7 +1,14 @@
 import { Button } from "@material-ui/core";
 import React, { ReactElement, useState } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect, Route, Switch, withRouter } from "react-router-dom";
+import {
+  Link,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+  withRouter,
+} from "react-router-dom";
 import { OrderComponent } from "../Order";
 import { ProfilePageComponent } from "../ProfilePage";
 import { TodoComponent } from "../Todo";
@@ -25,11 +32,11 @@ const routes = [
   },
 ];
 
-const HomePageComponent = (props): ReactElement => {
+const HomePageComponent = (): ReactElement => {
   const [isToggleSidebar, setIsToggleSideBar] = useState(false);
   const userInfo = localStorage.getItem("userInfo");
-  const { history, token } = props;
   const sideBarData = { isToggleSidebar };
+  const history = useHistory();
   // const selectLogin = useMemo(
   //   (state: any) => state.login,
   //   {}

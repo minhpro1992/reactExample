@@ -6,7 +6,10 @@ import {
   UserState,
 } from "./types";
 export const initialUserState: UserState = {
-  user: {},
+  user: {
+    id: 1,
+    username: "",
+  },
   isLoading: false,
   error: false,
 };
