@@ -13,10 +13,12 @@ function App({ store }: ProviderProps) {
   return (
     <div className="App">
       <Provider store={store}>
+        <Router>
         <Switch>
           <Route path="/login" component={LoginComponent}></Route>
           <Route path="/" component={HomePageComponent}></Route>
         </Switch>
+        </Router>
       </Provider>
     </div>
   );

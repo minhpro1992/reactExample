@@ -19,3 +19,7 @@ export type LoginParamType = {
   pass?: string;
   token?: string;
 };
+
+export type LoginErrorType = {
+  message: string
+}

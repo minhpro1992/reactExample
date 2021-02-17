@@ -36,8 +36,9 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
-    "husky": "^5.0.9",
-    "@types/styled-components": "^5.1.4"
+    "@types/styled-components": "^5.1.4",
+    "redux-saga-test-plan": "^4.0.1",
+    "husky": "^5.0.9"
   },
   "scripts": {
     "start": "react-scripts start",
