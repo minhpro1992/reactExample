@@ -14,7 +14,9 @@ export type PostItemType = {
 export type PostState = {
   posts: PostItemType[];
   isLoading: boolean;
-  error: boolean;
+  error: {
+    message?: string;
+  };
 };
 
 export type PostParamType = {

@@ -18,7 +18,7 @@ const TodoComponent = (): ReactElement => {
   const { posts, isLoading, error } = useSelector<ApplicationState, PostState>(
     (state) => state.post
   );
-  console.log("post: ", posts?.length, isLoading, error);
+  // console.log("post: ", posts?.length, isLoading, error);
   return (
     <>
       <div>Todo List: {posts?.length}</div>

@@ -12,7 +12,7 @@ import {
 const initialPostState: PostState = {
   posts: [],
   isLoading: false,
-  error: false,
+  error: {},
 };
 
 export const postReducer: Reducer<PostState> = (
