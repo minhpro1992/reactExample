@@ -15,4 +15,4 @@ export const deletePostRequest = (postId: number) =>
 export const deletePostSuccess = (postId: number) =>
   action(postTypes.DELETE_POST_SUCCESS, postId);
 export const deletePostFail = (error: Record<string, unknown>) =>
-  action(postTypes.DELETE_POST_REQUEST, error);
+  action(postTypes.DELETE_POST_FAIL, error);

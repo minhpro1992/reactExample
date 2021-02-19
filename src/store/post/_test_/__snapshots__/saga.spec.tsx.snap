@@ -1,0 +1,330 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`post saga delete post successfully 1`] = `
+Object {
+  "call": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "delete",
+          "https://jsonplaceholder.typicode.com",
+          "/posts/1",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/callApi",
+      },
+      "type": "CALL",
+    },
+  ],
+  "fork": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/watchPostRequest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/watchDeletePostRequest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "GET POST REQUEST",
+          "@@redux-saga-test-plan/json/function/handlePost",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "DELETE POST REQUEST",
+          "@@redux-saga-test-plan/json/function/handleDeletePost",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          Object {
+            "payload": 1,
+            "type": "DELETE POST REQUEST",
+          },
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/handleDeletePost",
+      },
+      "type": "FORK",
+    },
+  ],
+  "take": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "GET POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "DELETE POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "DELETE POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+  ],
+}
+`;
+
+exports[`post saga get  post info success 1`] = `
+Object {
+  "call": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "delete",
+          "https://jsonplaceholder.typicode.com",
+          "/posts/1",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/callApi",
+      },
+      "type": "CALL",
+    },
+  ],
+  "fork": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/watchPostRequest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/watchDeletePostRequest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "GET POST REQUEST",
+          "@@redux-saga-test-plan/json/function/handlePost",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "DELETE POST REQUEST",
+          "@@redux-saga-test-plan/json/function/handleDeletePost",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          Object {
+            "payload": 1,
+            "type": "DELETE POST REQUEST",
+          },
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/handleDeletePost",
+      },
+      "type": "FORK",
+    },
+  ],
+  "take": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "GET POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "DELETE POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "DELETE POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+  ],
+}
+`;
+
+exports[`post saga handle get post success 1`] = `
+Object {
+  "call": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "get",
+          "https://jsonplaceholder.typicode.com",
+          "/posts",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/callApi",
+      },
+      "type": "CALL",
+    },
+  ],
+  "fork": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/watchPostRequest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/watchDeletePostRequest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "GET POST REQUEST",
+          "@@redux-saga-test-plan/json/function/handlePost",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeEvery",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          "DELETE POST REQUEST",
+          "@@redux-saga-test-plan/json/function/handleDeletePost",
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/takeLatest",
+      },
+      "type": "FORK",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "args": Array [
+          Object {
+            "type": "GET POST REQUEST",
+          },
+        ],
+        "context": null,
+        "fn": "@@redux-saga-test-plan/json/function/handlePost",
+      },
+      "type": "FORK",
+    },
+  ],
+  "take": Array [
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "GET POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "DELETE POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+    Object {
+      "@@redux-saga/IO": true,
+      "combinator": false,
+      "payload": Object {
+        "pattern": "GET POST REQUEST",
+      },
+      "type": "TAKE",
+    },
+  ],
+}
+`;
