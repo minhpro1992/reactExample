@@ -15,9 +15,12 @@ import {
   DirectionsRenderer,
   InfoWindow,
 } from "react-google-maps";
+import _ from "lodash";
 import styled from "styled-components";
 import photoImg from "../assets/images/hotel.jpeg";
-const { compose, withProps, lifecycle } = require("recompose");
+const {
+  SearchBox,
+} = require("react-google-maps/lib/components/places/SearchBox");
 
 type MapProps = {
   selectedMarkerId: number;
@@ -59,7 +62,9 @@ const MapComponent = (): ReactElement => {
   const [directions, setDirections] = useState([]);
   const [center, setCenter] = useState({ lat: -32.202924, lng: -64.404945 });
   const [zoom, setZoom] = useState(8);
+  const [bounds, setBounds] = useState(null);
   const mapRef = useRef(null);
+  const refs = {} as any;
 
   useEffect(() => {
     const url = [
@@ -128,6 +133,34 @@ const MapComponent = (): ReactElement => {
     );
   }, []);
 
+  const onMapMounted = (ref: any) => {
+    refs.map = ref;
+  };
+  const onBoundsChanged = () => {
+    setBounds(refs.map.getBounds());
+    setCenter(refs.map.getCenter());
+  };
+  const onSearchBoxMounted = (ref: any) => {
+    refs.searchBox = ref;
+  };
+  const onPlacesChanged = () => {
+    const places = refs.searchBox.getPlaces();
+    const bounds = new google.maps.LatLngBounds();
+
+    places.forEach((place: any) => {
+      if (place.geometry.viewport) {
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    const nextMarkers = places.map((place: any) => ({
+      position: place.geometry.location,
+    }));
+    const nextCenter = _.get(nextMarkers, "0.position", center);
+    console.log(nextMarkers, nextCenter);
+  };
+
   const handleMarkerClick = useCallback(
     ({ photo_id, owner_name }: { photo_id: number; owner_name: string }) =>
       () => {
@@ -173,7 +206,38 @@ const MapComponent = (): ReactElement => {
   const GoogleMapExample = withGoogleMap((props: any) => {
     console.log("map props:", props);
     return (
-      <GoogleMap defaultZoom={zoom} defaultCenter={center}>
+      <GoogleMap
+        ref={props.onMapMounted}
+        defaultZoom={zoom}
+        defaultCenter={center}
+        onBoundsChanged={props.onBoundsChanged}
+      >
+        <SearchBox
+          ref={props.onSearchBoxMounted}
+          bounds={props.bounds}
+          controlPosition={google.maps.ControlPosition.TOP_LEFT}
+          onPlacesChanged={props.onPlacesChanged}
+        >
+          <input
+            type="text"
+            placeholder="Search on map"
+            style={{
+              position: `absolute`,
+              left: `30px`,
+              boxSizing: `border-box`,
+              border: `1px solid transparent`,
+              width: `350px`,
+              height: `32px`,
+              marginTop: `27px`,
+              padding: `0 12px`,
+              borderRadius: `3px`,
+              boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+              fontSize: `14px`,
+              outline: `none`,
+              textOverflow: `ellipses`,
+            }}
+          />
+        </SearchBox>
         {Array.isArray(props.markers) &&
           props.markers.length > 0 &&
           props.markers.map((marker: any) => (
@@ -215,7 +279,7 @@ const MapComponent = (): ReactElement => {
         markers={markers}
         directions={directions}
         onMarkerClick={handleMarkerClick}
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm8fTc4Y4sljxGKuburIAHKIAkySLWsKM&libraries=geometry,drawing,places"
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=geometry,drawing,places`}
         loadingElement={<div style={{ height: `100%` }}>loadingElement</div>}
         containerElement={
           <div className="map-containter" style={{ height: `100vh` }}></div>
