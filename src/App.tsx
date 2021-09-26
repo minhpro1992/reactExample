@@ -1,3 +1,4 @@
+/*global google*/
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -14,10 +15,10 @@ function App({ store }: ProviderProps) {
     <div className="App">
       <Provider store={store}>
         <Router>
-        <Switch>
-          <Route path="/login" component={LoginComponent}></Route>
-          <Route path="/" component={HomePageComponent}></Route>
-        </Switch>
+          <Switch>
+            <Route path="/login" component={LoginComponent}></Route>
+            <Route path="/" component={HomePageComponent}></Route>
+          </Switch>
         </Router>
       </Provider>
     </div>

@@ -9,6 +9,7 @@ import {
   useHistory,
   withRouter,
 } from "react-router-dom";
+import { MapComponent } from "../Map";
 import { OrderComponent } from "../Order";
 import { ProfilePageComponent } from "../ProfilePage";
 import { TodoComponent } from "../Todo";
@@ -18,6 +19,10 @@ import {
 } from "./HomePageStyled";
 
 const routes = [
+  {
+    path: "/map",
+    component: <MapComponent />
+  },
   {
     path: "/order",
     component: <OrderComponent />,
@@ -66,7 +71,10 @@ const HomePageComponent = (): ReactElement => {
               listStyleType: "none",
               padding: 0,
             }}
-          >
+          > 
+          <li>
+            <Link to="/map">Map</Link>
+          </li>
             <li>
               <Link to="/order">Order</Link>
             </li>
